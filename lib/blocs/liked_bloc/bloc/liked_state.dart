@@ -1,6 +1,14 @@
 part of 'liked_bloc.dart';
 
 @immutable
-sealed class LikedState {}
+abstract class LikeState {}
 
-final class LikedInitial extends LikedState {}
+abstract class LikeActionState extends LikeState {}
+
+class LikeInitial extends LikeState {}
+
+class LikeSuccessState extends LikeState {
+  final List<Blog> likedBlogs;
+
+  LikeSuccessState({required this.likedBlogs});
+}

@@ -3,6 +3,7 @@ import 'package:blog_explorer/repositories/blog_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/liked_bloc/bloc/liked_bloc.dart';
 import 'views/home_screen.dart';
 
 void main() {
@@ -14,15 +15,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'SubSurface Task',
-      theme: ThemeData.dark(
-        useMaterial3: true,
-      ),
-      home: BlocProvider(
-        create: (context) => HomeBloc(BlogService()),
-        child: const HomeScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => HomeBloc(BlogService()),
+        ),
+        BlocProvider(
+          create: (context) => LikeBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'SubSurface Task',
+        theme: ThemeData.dark(
+          useMaterial3: true,
+        ),
+        home: const HomeScreen(),
       ),
     );
   }

@@ -7,6 +7,10 @@ class HomeInitialEvent extends HomeEvent {}
 
 class HomeFetchBlogsEvent extends HomeEvent {}
 
-class HomeBlogLikedButtonClickedEvent extends HomeEvent {}
+class HomeBlogLikedButtonClickedEvent extends HomeEvent {
+  final Blog likedBlog;
+
+  HomeBlogLikedButtonClickedEvent({required this.likedBlog});
+}
 
 class HomeLikedButtonNavigatorEvent extends HomeEvent {}

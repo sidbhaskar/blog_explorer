@@ -4,10 +4,10 @@ import '../blocs/home_bloc/bloc/home_bloc.dart';
 import '../blocs/liked_bloc/bloc/liked_bloc.dart';
 import '../models/blog_model.dart';
 
-class BlogTile extends StatelessWidget {
+class LikedBlogTile extends StatelessWidget {
   final Blog blog;
-  final HomeBloc homeBloc;
-  BlogTile({required this.homeBloc, required this.blog});
+  final LikeBloc likeBloc;
+  LikedBlogTile({required this.likeBloc, required this.blog});
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +34,7 @@ class BlogTile extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {
-                    homeBloc
-                        .add(HomeBlogLikedButtonClickedEvent(likedBlog: blog));
-                  },
+                  onPressed: () {},
                   icon: Icon(Icons.favorite),
                 ),
               ],
