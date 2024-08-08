@@ -4,3 +4,9 @@ part of 'liked_bloc.dart';
 abstract class LikeEvent {}
 
 class LikeInitialEvent extends LikeEvent {}
+
+class LikeBlogRemovedEvent extends LikeEvent {
+  final Blog blog;
+
+  LikeBlogRemovedEvent({required this.blog});
+}

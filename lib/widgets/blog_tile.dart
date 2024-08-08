@@ -7,6 +7,7 @@ import '../models/blog_model.dart';
 class BlogTile extends StatelessWidget {
   final Blog blog;
   final HomeBloc homeBloc;
+
   BlogTile({required this.homeBloc, required this.blog});
 
   @override
@@ -35,10 +36,19 @@ class BlogTile extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    homeBloc
-                        .add(HomeBlogLikedButtonClickedEvent(likedBlog: blog));
+                    final updatedBlog = Blog(
+                      id: blog.id,
+                      imageUrl: blog.imageUrl,
+                      title: blog.title,
+                      liked: !blog.liked, // Toggle liked state
+                    );
+                    homeBloc.add(HomeBlogLikedButtonClickedEvent(
+                        likedBlog: updatedBlog));
                   },
-                  icon: Icon(Icons.favorite),
+                  icon: Icon(
+                    Icons.favorite,
+                    color: blog.liked ? Colors.red : Colors.grey,
+                  ),
                 ),
               ],
             ),

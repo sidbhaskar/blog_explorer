@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/home_bloc/bloc/home_bloc.dart';
 import '../blocs/liked_bloc/bloc/liked_bloc.dart';
 import '../models/blog_model.dart';
 
 class LikedBlogTile extends StatelessWidget {
   final Blog blog;
   final LikeBloc likeBloc;
+
   LikedBlogTile({required this.likeBloc, required this.blog});
 
   @override
@@ -34,8 +34,13 @@ class LikedBlogTile extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.favorite),
+                  onPressed: () {
+                    likeBloc.add(LikeBlogRemovedEvent(blog: blog));
+                  },
+                  icon: Icon(
+                    Icons.remove_circle,
+                    color: Colors.red,
+                  ),
                 ),
               ],
             ),

@@ -14,14 +14,12 @@ class LikedBlogRepository {
   List<Blog> get likedBlogs => _likedBlogs;
 
   void addBlog(Blog blog) {
-    _likedBlogs.add(blog);
+    if (!_likedBlogs.any((b) => b.id == blog.id)) {
+      _likedBlogs.add(blog);
+    }
   }
 
   void removeBlog(Blog blog) {
-    _likedBlogs.remove(blog);
-  }
-
-  bool isBlogLiked(Blog blog) {
-    return _likedBlogs.contains(blog);
+    _likedBlogs.removeWhere((b) => b.id == blog.id);
   }
 }

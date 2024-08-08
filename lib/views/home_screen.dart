@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:blog_explorer/repositories/blog_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,14 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         } else if (state is HomeProductItemLikedActionState) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Blog Liked')),
+            const SnackBar(content: Text('Blog Liked')),
           );
         }
       },
       builder: (context, state) {
         switch (state.runtimeType) {
           case HomeLoadingState:
-            return Scaffold(
+            return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
           case HomeLoadedSuccessState:
@@ -53,15 +52,16 @@ class _HomeScreenState extends State<HomeScreen> {
               appBar: AppBar(
                 title: const Text('Blog Explorer'),
                 actions: [
-                  const Text('Liked'),
-                  IconButton(
-                    onPressed: () {
-                      homeBloc.add(
-                        HomeLikedButtonNavigatorEvent(),
-                      );
-                    },
-                    icon: const Icon(Icons.favorite),
-                  ),
+                  GestureDetector(
+                      onTap: () {
+                        homeBloc.add(
+                          HomeLikedButtonNavigatorEvent(),
+                        );
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.all(18.0),
+                        child: Text('View Liked'),
+                      )),
                 ],
               ),
               body: ListView.builder(
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           case HomeErrorState:
-            return Scaffold(
+            return const Scaffold(
               body: Center(
                 child: Text('Error'),
               ),
